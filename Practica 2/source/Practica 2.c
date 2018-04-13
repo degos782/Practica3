@@ -58,37 +58,13 @@ int main(void) {
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
     iniciar();
-    T_UBYTE valorpulso;
-    T_UBYTE BotonIncremento;
-    BotonIncremento=False;
-    valorpulso=False;
+
     /* Enter an infinite loop, just incrementing a counter. */
     while(1)
     {
+    ChecarEntradaIncremento();
 
-    	BotonIncremento=GPIO_ReadPinInput(GPIOB,Incremento_Boton);
-    	if(BotonIncremento==False)
-    	{
 
-    		valorpulso=LonguitudPulso(GPIOB,Incremento_Boton);
-    		if(valorpulso==Largo)
-    		{
-    		GPIO_WritePinOutput(GPIOB,LED_Red,False);
-    		delay();
-    		GPIO_WritePinOutput(GPIOB,LED_Red,True);
-    		}
-    		else if(valorpulso==Corto)
-    		{
-    		GPIO_WritePinOutput(GPIOB,LED_Green,False);
-    		delay();
-    		GPIO_WritePinOutput(GPIOB,LED_Green,True);
-    		}
-    	}
-    	else
-    	{
-
-    	}
-    delay();
     }
     return 0 ;
 }

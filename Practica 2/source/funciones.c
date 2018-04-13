@@ -19,14 +19,19 @@ EstadoPin=False;
 
 	while(EstadoPin == False)  //se evalua el valor del pin considerando entradas pull up
 	{
-		if(Debounce == 30000)
+		if(Debounce <500)
+		{
+		Pulso=TiempoDebounce;
+		}
+		else if(Debounce == 1000)
 		{
 		Pulso=Corto;
+
 		}
-		if(Debounce == 150000)
+		else if(Debounce > 300000)
 		{
 		Pulso=Largo;
-		break;
+
 		}
 	Debounce+=True;
 	EstadoPin = GPIO_ReadPinInput(puertodelectura,pindelectura);
@@ -86,4 +91,33 @@ void delay(void)
 int i;
 	for(i=0;i<=399999;i++)
 	{}
+}
+void ChecarEntradaIncremento(void)
+{
+T_UBYTE valorpulso;
+T_UBYTE BotonIncremento;
+BotonIncremento=False;
+valorpulso=False;
+BotonIncremento=GPIO_ReadPinInput(GPIOB,Incremento_Boton);
+	if(BotonIncremento==False)
+	{
+	valorpulso=LonguitudPulso(GPIOB,Incremento_Boton);
+		if(valorpulso==Largo)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    }
+	    else if(valorpulso==Corto)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    }
+	 }
+	 else
+	 {
+
+	 }
+return;
 }

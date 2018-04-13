@@ -26,11 +26,11 @@ typedef unsigned int   T_ULONG;
 #define LED_G ((uint32_t)10u)
 #define False ((T_UBYTE)0u)
 #define True  ((T_UBYTE)1u)
-#define Corto ((T_UBYTE)0u)
-#define Largo ((T_UBYTE)1u)
-
+#define Corto ((T_UBYTE)1u)
+#define Largo ((T_UBYTE)2u)
+#define TiempoDebounce ((T_UBYTE)0u)
 int LonguitudPulso();
 void iniciar(void);
 void delay(void);
-
+void ChecarEntradaIncremento(void);
 #endif /* FUNCIONES_H_ */
