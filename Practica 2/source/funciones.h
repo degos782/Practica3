@@ -29,11 +29,18 @@ typedef unsigned int   T_ULONG;
 #define Corto ((T_UBYTE)1u)
 #define Largo ((T_UBYTE)2u)
 #define TiempoDebounce ((T_UBYTE)0u)
+#define Contador ((T_UBYTE)0u)
+#define Timer    ((T_UBYTE)1u)
+#define ADC      ((T_UBYTE)2u)
+
+
 int LonguitudPulso();
 void iniciar(void);
 void delay(void);
 void ChecarEntradaIncremento(void);
 void ChecarEntradaDecremento(void);
-void ChecarEntradaReinicio(void);
-
+int ChecarEntradaReinicio(void);
+void Numero0(void);
+void Numero1(void);
+void Numero2(void);
 #endif /* FUNCIONES_H_ */

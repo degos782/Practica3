@@ -42,6 +42,7 @@
 #include "fsl_gpio.h"
 #include "fsl_clock.h"
 #include "fsl_port.h"
+
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
@@ -58,14 +59,40 @@ int main(void) {
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
     iniciar();
+    T_UBYTE Modo;
+    Modo= False;
 
     /* Enter an infinite loop, just incrementing a counter. */
     while(1)
     {
-    ChecarEntradaIncremento();
-    ChecarEntradaDecremento();
-    ChecarEntradaReinicio();
-
+    //ChecarEntradaIncremento();
+    //ChecarEntradaDecremento();
+    //ChecarEntradaReinicio();
+    	switch(Modo)
+    	{
+    	case Contador:
+    	{
+    	Numero0();
+    	Modo+=ChecarEntradaReinicio();
+    	break;
+    	}
+    	case Timer:
+    	{
+    	Numero1();
+    	Modo+=ChecarEntradaReinicio();
+    	break;
+    	}
+    	case ADC:
+    	{
+    	Numero2();
+    	Modo+=ChecarEntradaReinicio();
+    		if (Modo>2)
+    		{
+    		Modo=Contador;
+    		}
+    	break;
+    	}
+    	}
     }
     return 0 ;
 }

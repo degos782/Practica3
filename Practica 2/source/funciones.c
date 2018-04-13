@@ -150,12 +150,14 @@ BotonDecremento=GPIO_ReadPinInput(GPIOB,Decremento_Boton);
 	 }
 return;
 }
-void ChecarEntradaReinicio(void)
+int ChecarEntradaReinicio(void)
 {
 T_UBYTE valorpulso;
 T_UBYTE BotonReinicio;
+T_UBYTE CambioModo;
 BotonReinicio=False;
 valorpulso=False;
+CambioModo=False;
 BotonReinicio=GPIO_ReadPinInput(GPIOB,Reinicio_Boton);
 	if(BotonReinicio==False)
 	{
@@ -165,17 +167,52 @@ BotonReinicio=GPIO_ReadPinInput(GPIOB,Reinicio_Boton);
 	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    CambioModo=True;
 	    }
 	    else if(valorpulso==Corto)
 	    {
 	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    CambioModo=False;
 	    }
 	 }
 	 else
 	 {
 
 	 }
+return CambioModo;
+}
+void Numero0(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,False);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,True);
+return;
+}
+void Numero1(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,True);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,True);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,True);
+	GPIO_WritePinOutput(GPIOC,LED_G,True);
+return;
+}
+void Numero2(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,True);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,False);
+	GPIO_WritePinOutput(GPIOC,LED_F,True);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
 return;
 }
