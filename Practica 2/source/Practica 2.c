@@ -38,6 +38,10 @@
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "MKL25Z4.h"
+#include "funciones.h"
+#include "fsl_gpio.h"
+#include "fsl_clock.h"
+#include "fsl_port.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
@@ -53,14 +57,38 @@ int main(void) {
     BOARD_InitBootPeripherals();
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
-
-    printf("Hello World\n");
-
-    /* Force the counter to be placed into memory. */
-    volatile static int i = 0 ;
+    iniciar();
+    T_UBYTE valorpulso;
+    T_UBYTE BotonIncremento;
+    BotonIncremento=False;
+    valorpulso=False;
     /* Enter an infinite loop, just incrementing a counter. */
-    while(1) {
-        i++ ;
+    while(1)
+    {
+
+    	BotonIncremento=GPIO_ReadPinInput(GPIOB,Incremento_Boton);
+    	if(BotonIncremento==False)
+    	{
+
+    		valorpulso=LonguitudPulso(GPIOB,Incremento_Boton);
+    		if(valorpulso==Largo)
+    		{
+    		GPIO_WritePinOutput(GPIOB,LED_Red,False);
+    		delay();
+    		GPIO_WritePinOutput(GPIOB,LED_Red,True);
+    		}
+    		else if(valorpulso==Corto)
+    		{
+    		GPIO_WritePinOutput(GPIOB,LED_Green,False);
+    		delay();
+    		GPIO_WritePinOutput(GPIOB,LED_Green,True);
+    		}
+    	}
+    	else
+    	{
+
+    	}
+    delay();
     }
     return 0 ;
 }
