@@ -33,4 +33,7 @@ int LonguitudPulso();
 void iniciar(void);
 void delay(void);
 void ChecarEntradaIncremento(void);
+void ChecarEntradaDecremento(void);
+void ChecarEntradaReinicio(void);
+
 #endif /* FUNCIONES_H_ */

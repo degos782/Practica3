@@ -63,7 +63,8 @@ int main(void) {
     while(1)
     {
     ChecarEntradaIncremento();
-
+    ChecarEntradaDecremento();
+    ChecarEntradaReinicio();
 
     }
     return 0 ;

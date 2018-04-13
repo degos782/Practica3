@@ -121,3 +121,61 @@ BotonIncremento=GPIO_ReadPinInput(GPIOB,Incremento_Boton);
 	 }
 return;
 }
+void ChecarEntradaDecremento(void)
+{
+T_UBYTE valorpulso;
+T_UBYTE BotonDecremento;
+BotonDecremento=False;
+valorpulso=False;
+BotonDecremento=GPIO_ReadPinInput(GPIOB,Decremento_Boton);
+	if(BotonDecremento==False)
+	{
+	valorpulso=LonguitudPulso(GPIOB,Decremento_Boton);
+		if(valorpulso==Largo)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    }
+	    else if(valorpulso==Corto)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    }
+	 }
+	 else
+	 {
+
+	 }
+return;
+}
+void ChecarEntradaReinicio(void)
+{
+T_UBYTE valorpulso;
+T_UBYTE BotonReinicio;
+BotonReinicio=False;
+valorpulso=False;
+BotonReinicio=GPIO_ReadPinInput(GPIOB,Reinicio_Boton);
+	if(BotonReinicio==False)
+	{
+	valorpulso=LonguitudPulso(GPIOB,Reinicio_Boton);
+		if(valorpulso==Largo)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    }
+	    else if(valorpulso==Corto)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    }
+	 }
+	 else
+	 {
+
+	 }
+return;
+}
