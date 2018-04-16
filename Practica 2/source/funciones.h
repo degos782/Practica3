@@ -11,6 +11,7 @@
 typedef unsigned char  T_UBYTE;
 typedef unsigned short T_UWORD;
 typedef unsigned int   T_ULONG;
+typedef signed char   T_BYTE;
 #define Incremento_Boton ((uint32_t)0u)
 #define Decremento_Boton ((uint32_t)1u)
 #define Reinicio_Boton ((uint32_t)2u)
@@ -37,10 +38,23 @@ typedef unsigned int   T_ULONG;
 int LonguitudPulso();
 void iniciar(void);
 void delay(void);
-void ChecarEntradaIncremento(void);
-void ChecarEntradaDecremento(void);
+int ChecarEntradaIncremento(void);
+int ChecarEntradaDecremento(void);
 int ChecarEntradaReinicio(void);
 void Numero0(void);
 void Numero1(void);
 void Numero2(void);
+void Numero3(void);
+void Numero4(void);
+void Numero5(void);
+void Numero6(void);
+void Numero7(void);
+void Numero8(void);
+void Numero9(void);
+int PulsacionReinicio();
+
+
+
+
+
 #endif /* FUNCIONES_H_ */

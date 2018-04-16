@@ -61,7 +61,15 @@ int main(void) {
     iniciar();
     T_UBYTE Modo;
     Modo= False;
+    T_UBYTE ValorIncremento;
+    ValorIncremento=False;
+    T_UBYTE ValorDecremento;
+    ValorDecremento=False;
+    T_UBYTE Reinicio;
+    Reinicio=False;
 
+    T_BYTE ValorContadorUnidades;
+    ValorContadorUnidades=False;
     /* Enter an infinite loop, just incrementing a counter. */
     while(1)
     {
@@ -72,19 +80,90 @@ int main(void) {
     	{
     	case Contador:
     	{
+    	GPIO_WritePinOutput(GPIOB,LED_Red,False);
+    	GPIO_WritePinOutput(GPIOB,LED_Green,False);
+    	ValorIncremento=ChecarEntradaIncremento();
+    	ValorDecremento=ChecarEntradaDecremento();
+    	ValorContadorUnidades=ValorContadorUnidades+ValorIncremento-ValorDecremento;
+    	if(ValorContadorUnidades<0 && ValorDecremento==1 )
+    	{
+    	ValorContadorUnidades=9;
+    	}
+    		else if (ValorContadorUnidades>9 && ValorIncremento==1)
+    		{
+    		ValorContadorUnidades=0;
+    		}
+    		else
+    		{
+
+    		}
+
+    	if (ValorContadorUnidades==0)
+    	{
     	Numero0();
+    	}
+    		else if (ValorContadorUnidades==1)
+    		{
+    		Numero1();
+    		}
+    		else if (ValorContadorUnidades==2)
+    	    {
+    	    Numero2();
+    	    }
+    		else if (ValorContadorUnidades==3)
+    	    {
+    	    Numero3();
+    	    }
+    		else if (ValorContadorUnidades==4)
+    	    {
+    	    Numero4();
+    	    }
+    		else if (ValorContadorUnidades==5)
+    	    {
+    	   	Numero5();
+    	    }
+    		else if (ValorContadorUnidades==6)
+    	    {
+    	    Numero6();
+    	    }
+    		else if (ValorContadorUnidades==7)
+    	    {
+    	    Numero7();
+    	    }
+    		else if (ValorContadorUnidades==8)
+    	    {
+    	    Numero8();
+    	    }
+    		else if (ValorContadorUnidades==9)
+    		{
+    		Numero9();
+    		}
+    		else
+    		{
+
+    		}
+    	Reinicio=PulsacionReinicio();
     	Modo+=ChecarEntradaReinicio();
-    	break;
+    	if(Reinicio==True)
+    	{
+    	ValorContadorUnidades=0;
+    	Reinicio=False;
+    	}
+    		break;
     	}
     	case Timer:
     	{
-    	Numero1();
+    	GPIO_WritePinOutput(GPIOB,LED_Green,True);
+    	GPIO_WritePinOutput(GPIOB,LED_Red,False);
+    	GPIO_WritePinOutput(GPIOD,LED_Blue,False);
     	Modo+=ChecarEntradaReinicio();
     	break;
     	}
     	case ADC:
     	{
-    	Numero2();
+    	GPIO_WritePinOutput(GPIOB,LED_Red,True);
+    	GPIO_WritePinOutput(GPIOD,LED_Blue,False);
+    	GPIO_WritePinOutput(GPIOB,LED_Green,False);
     	Modo+=ChecarEntradaReinicio();
     		if (Modo>2)
     		{

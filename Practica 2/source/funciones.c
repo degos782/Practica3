@@ -31,7 +31,7 @@ EstadoPin=False;
 		else if(Debounce > 300000)
 		{
 		Pulso=Largo;
-
+		break;
 		}
 	Debounce+=True;
 	EstadoPin = GPIO_ReadPinInput(puertodelectura,pindelectura);
@@ -92,39 +92,45 @@ int i;
 	for(i=0;i<=399999;i++)
 	{}
 }
-void ChecarEntradaIncremento(void)
+int ChecarEntradaIncremento(void)
 {
 T_UBYTE valorpulso;
 T_UBYTE BotonIncremento;
+T_UBYTE Incremento;
+Incremento=False;
 BotonIncremento=False;
 valorpulso=False;
 BotonIncremento=GPIO_ReadPinInput(GPIOB,Incremento_Boton);
 	if(BotonIncremento==False)
 	{
 	valorpulso=LonguitudPulso(GPIOB,Incremento_Boton);
-		if(valorpulso==Largo)
+	if(valorpulso==Largo)
 	    {
 	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    Incremento=True;
 	    }
 	    else if(valorpulso==Corto)
 	    {
 	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    Incremento=True;
 	    }
 	 }
 	 else
 	 {
 
 	 }
-return;
+return Incremento;
 }
-void ChecarEntradaDecremento(void)
+int ChecarEntradaDecremento(void)
 {
 T_UBYTE valorpulso;
 T_UBYTE BotonDecremento;
+T_UBYTE Decremento;
+Decremento=False;
 BotonDecremento=False;
 valorpulso=False;
 BotonDecremento=GPIO_ReadPinInput(GPIOB,Decremento_Boton);
@@ -136,19 +142,21 @@ BotonDecremento=GPIO_ReadPinInput(GPIOB,Decremento_Boton);
 	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    Decremento=True;
 	    }
 	    else if(valorpulso==Corto)
 	    {
 	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
 	    delay();
 	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    Decremento=True;
 	    }
 	 }
 	 else
 	 {
 
 	 }
-return;
+return Decremento;
 }
 int ChecarEntradaReinicio(void)
 {
@@ -215,4 +223,114 @@ void Numero2(void)
 	GPIO_WritePinOutput(GPIOC,LED_F,True);
 	GPIO_WritePinOutput(GPIOC,LED_G,False);
 return;
+}
+void Numero3(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,True);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+void Numero4(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,True);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,True);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+void Numero5(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,True);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+void Numero6(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,True);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,False);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+void Numero7(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,True);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,True);
+	GPIO_WritePinOutput(GPIOC,LED_G,True);
+return;
+}
+void Numero8(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,False);
+	GPIO_WritePinOutput(GPIOC,LED_E,False);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+void Numero9(void)
+{
+	GPIO_WritePinOutput(GPIOC,LED_A,False);
+	GPIO_WritePinOutput(GPIOC,LED_B,False);
+	GPIO_WritePinOutput(GPIOC,LED_C,False);
+	GPIO_WritePinOutput(GPIOC,LED_D,True);
+	GPIO_WritePinOutput(GPIOC,LED_E,True);
+	GPIO_WritePinOutput(GPIOC,LED_F,False);
+	GPIO_WritePinOutput(GPIOC,LED_G,False);
+return;
+}
+int PulsacionReinicio(void)
+{
+T_UBYTE valorpulso;
+T_UBYTE BotonReinicio;
+T_UBYTE Reinicio;
+BotonReinicio=False;
+valorpulso=False;
+Reinicio=False;
+BotonReinicio=GPIO_ReadPinInput(GPIOB,Reinicio_Boton);
+	if(BotonReinicio==False)
+	{
+	valorpulso=LonguitudPulso(GPIOB,Reinicio_Boton);
+		if(valorpulso==Largo)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Red,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Red,True);
+	    Reinicio=False;
+	    }
+	    else if(valorpulso==Corto)
+	    {
+	    GPIO_WritePinOutput(GPIOB,LED_Green,False);
+	    delay();
+	    GPIO_WritePinOutput(GPIOB,LED_Green,True);
+	    Reinicio=True;
+	    }
+	 }
+	 else
+	 {
+
+	 }
+return Reinicio;
 }
